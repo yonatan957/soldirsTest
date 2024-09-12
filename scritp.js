@@ -17,7 +17,6 @@ addButton.addEventListener("click", e=> {
     addToList()
     localStorage.setItem("soldirs", JSON.stringify(soldirs))
     let times = table.childElementCount;
-    console.log(times)
     for(let i = 1; i<times ; i++){
         table.children[i].remove()
     }   
