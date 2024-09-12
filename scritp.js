@@ -16,59 +16,15 @@ addButton.addEventListener("click", e=> {
     console.log(soldirs)
     addToList()
     localStorage.setItem("soldirs", JSON.stringify(soldirs))
-    table.innerHTML =""
+    let times = table.childElementCount;
+    console.log(times)
+    for(let i = 1; i<times ; i++){
+        table.children[i].remove()
+    }   
     addtoTable(soldirs)
 })
 
-// function initPage(){
-//     let div = cteateDatailsDiv()
-//     console.log(div)
-//     containor.appendChild(div)
-// }
 
-// function cteateDatailsDiv(details)
-//     {
-//         let detailsDiv = document.createElement("div")
-
-//         let detailsKeys = ["name", "rank", "position", "flatton"]
-//         let placeholders = ["Full Name","Rank","Position","Flatton"]
-//         for(let i =0; i <4; i++){
-//             let input = document.createElement("input")
-//             if(details){input.value = details[detailsKeys[i]]}
-//             else{input.placeholder = placeholders[i]}
-//             detailsDiv.appendChild(input)
-//         }
-
-//         let numInput = document.createElement("input")
-//         numInput.type ="number"
-//         if(details){numInput.value = details.missionTime}
-//         detailsDiv.appendChild(numInput)
-
-//         let statuses = ["Active", "Retired", "Reserve"]
-//         let select = document.createElement("select")
-//         for (let i=0; i <3; i++){
-//             let option = document.createElement("option")
-//             option.value = statuses[i]
-//             option.innerText = statuses[i]
-//             select.appendChild(option)
-//         }
-//         detailsDiv.appendChild(select)
-
-//         let button = document.createElement("button")
-//         button.id = "add-save"
-//         if(details){
-//             button.innerText = "Save Changes"
-//             let cancelButton = document.createElement("button")
-//             cancelButton.id = "cancelButton"
-//             cancelButton.innerText = "Cancel"
-//             detailsDiv.append(button, cancelButton)
-//         }
-//         else{
-//             button.innerText = "Add Personnal"
-//             detailsDiv.appendChild(button)
-//         }
-//         return detailsDiv
-//     }
 function addtoTable(rows){
     for (let row of rows){
         let tr = document.createElement("tr")
@@ -127,7 +83,6 @@ function addToList(){
         status: addDiv.children[5].value
     }
     soldirs.push(soldir)
-    console.log(soldir)
 }
 function removeRow(e){
     let name = e.currentTarget.parentElement.parentElement.children[0].innerText
@@ -138,9 +93,12 @@ function removeRow(e){
 function startMission(e){
     let name = e.currentTarget.parentElement.parentElement.children[0].innerText
     let time = Number(soldirs.filter(s => s.name === name)[0].time)
-    let a = setInterval((e) =>{
-
-    })
+    
+    // let a = setInterval(() =>{
+    //     e.currentTarget.innerText = time
+    //     time --
+    //     if(t)
+    // },1000)
 }
 
 function edit(e){
@@ -174,22 +132,36 @@ function edit(e){
         cancel(e)
     })
 
-    addDiv.append(newButton, CancelButton)
+    addDiv.append(newButton, CancelButton, nameinput)
 }
 
 function cancel(e){
-    table.style.display ="block"
+    table.style.display =""
     document.querySelector("#second").style.display = "block"
     addDiv.children[7].remove()
     addDiv.children[7].remove()
     let newButton = document.createElement("button")
     newButton.innerText = "AddPersonnal"
     addDiv.children[6].style.display ="block"
+    
+    for (let i = 0 ; i <5; i++){
+        addDiv.children[i].value =""
+    }
 }
 function proove(e){
-    let name = e.currentTarget.parentElement.parentElement.children[9].value
-    console.log(name)
+    let times = table.childElementCount;
+    console.log(times)
+    for(let i = 1; i<times ; i++){
+        table.children[i].remove()
+    }   
+    table.style.display =""
+    document.querySelector("#second").style.display = "block"
+    let name = e.currentTarget.parentElement.children[9].innerText
     soldirs = soldirs.filter(s => {return s.name !== name})
-    e.currentTarget.parentElement.parentElement.remove();
-    // localStorage.setItem("soldirs", JSON.stringify(soldirs))
+    addToList()
+    localStorage.setItem("soldirs", JSON.stringify(soldirs))
+    addtoTable(soldirs) 
+    for (let i = 0 ; i <5; i++){
+        addDiv.children[i].value =""
+    }   
 }
