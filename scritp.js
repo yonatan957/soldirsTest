@@ -139,8 +139,7 @@ function cancel(e){
     document.querySelector("#second").style.display = "block"
     addDiv.children[7].remove()
     addDiv.children[7].remove()
-    let newButton = document.createElement("button")
-    newButton.innerText = "AddPersonnal"
+    addDiv.children[7].remove()
     addDiv.children[6].style.display ="block"
     
     for (let i = 0 ; i <5; i++){
@@ -148,6 +147,7 @@ function cancel(e){
     }
 }
 function proove(e){
+    addDiv.children[6].style.display ="block"
     let times = table.childElementCount;
     console.log(times)
     for(let i = 1; i<times ; i++){
@@ -163,4 +163,7 @@ function proove(e){
     for (let i = 0 ; i <5; i++){
         addDiv.children[i].value =""
     }   
+    addDiv.children[7].remove()
+    addDiv.children[7].remove()
+    addDiv.children[7].remove()
 }
